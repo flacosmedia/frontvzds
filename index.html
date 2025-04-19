@@ -1,10 +1,4 @@
-from pathlib import Path
 
-# Caminho do novo HTML modificado
-output_path = Path("/mnt/data/telegram_compra_duplo_pixel.html")
-
-# HTML atualizado com o segundo pixel (645751058327823) e evento Purchase de R$20 via localStorage
-html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,6 +103,24 @@ html_content = """
     }
   </style>
   <script>
+    function goToGroup() {
+      window.location.href = "https://t.me/+y1Zv4XDqYBc4ZTgx";
+    }
+  </script>
+  <!-- Facebook Pixels -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '849999207310559');
+    fbq('init', '645751058327823');
+
     window.onload = function () {
       if (!localStorage.getItem("front")) {
         localStorage.setItem("front", "true");
@@ -116,35 +128,12 @@ html_content = """
           value: 20.00,
           currency: 'BRL'
         });
+        fbq('trackCustom', 'Purchase_645751058327823', {
+          value: 20.00,
+          currency: 'BRL'
+        });
       }
     };
-    function goToGroup() {
-      window.location.href = "https://t.me/+y1Zv4XDqYBc4ZTgx";
-    }
-  </script>
-  <!-- Pixel Antigo -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '849999207310559');
-  </script>
-  <!-- Pixel Novo -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '645751058327823');
   </script>
   <noscript>
     <img height="1" width="1" style="display:none"
@@ -172,10 +161,3 @@ html_content = """
   </div>
 </body>
 </html>
-"""
-
-# Escreve o arquivo
-output_path.write_text(html_content)
-
-# Retorna o nome do arquivo gerado
-output_path.name
