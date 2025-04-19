@@ -1,4 +1,10 @@
+from pathlib import Path
 
+# Caminho do novo HTML modificado
+output_path = Path("/mnt/data/telegram_compra_duplo_pixel.html")
+
+# HTML atualizado com o segundo pixel (645751058327823) e evento Purchase de R$20 via localStorage
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +19,6 @@
       background-size: cover;
       font-family: 'Roboto', sans-serif;
     }
-
     .header {
       display: flex;
       justify-content: space-between;
@@ -22,11 +27,9 @@
       padding: 10px 20px;
       border-bottom: 1px solid #ddd;
     }
-
     .header img {
       height: 32px;
     }
-
     .download-btn {
       background-color: #3390ec;
       color: white;
@@ -36,14 +39,12 @@
       font-size: 14px;
       text-decoration: none;
     }
-
     .main {
       display: flex;
       justify-content: center;
       align-items: center;
       height: calc(100vh - 60px);
     }
-
     .card {
       background: white;
       padding: 50px 70px;
@@ -53,12 +54,10 @@
       position: relative;
       max-width: 350px;
     }
-
     .avatar-wrapper {
       position: relative;
       display: inline-block;
     }
-
     .avatar {
       width: 140px;
       height: 140px;
@@ -66,7 +65,6 @@
       object-fit: cover;
       margin-bottom: 20px;
     }
-
     .verified {
       position: absolute;
       bottom: 10px;
@@ -77,27 +75,23 @@
       border-radius: 50%;
       padding: 2px;
     }
-
     .username {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 5px;
       color: #000;
     }
-
     .handle {
       font-size: 14px;
       color: #777;
       margin-bottom: 20px;
     }
-
     .message {
       font-size: 16px;
       color: #333;
       margin: 25px 0;
       font-style: italic;
     }
-
     .redirect-btn {
       background-color: #3390ec;
       color: white;
@@ -110,7 +104,6 @@
       text-transform: uppercase;
       transition: background 0.3s ease;
     }
-
     .redirect-btn:hover {
       background-color: #0075c2;
     }
@@ -125,12 +118,11 @@
         });
       }
     };
-
     function goToGroup() {
       window.location.href = "https://t.me/+y1Zv4XDqYBc4ZTgx";
     }
   </script>
-  <!-- Facebook Pixel Code -->
+  <!-- Pixel Antigo -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -142,9 +134,23 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '849999207310559');
   </script>
+  <!-- Pixel Novo -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '645751058327823');
+  </script>
   <noscript>
     <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=1005487101174659&ev=Purchase&cd[value]=20.00&cd[currency]=BRL&noscript=1"/>
+         src="https://www.facebook.com/tr?id=849999207310559&ev=Purchase&cd[value]=20.00&cd[currency]=BRL&noscript=1"/>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=645751058327823&ev=Purchase&cd[value]=20.00&cd[currency]=BRL&noscript=1"/>
   </noscript>
 </head>
 <body>
@@ -166,3 +172,10 @@
   </div>
 </body>
 </html>
+"""
+
+# Escreve o arquivo
+output_path.write_text(html_content)
+
+# Retorna o nome do arquivo gerado
+output_path.name
