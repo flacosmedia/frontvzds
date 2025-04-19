@@ -107,7 +107,7 @@
       window.location.href = "https://t.me/+y1Zv4XDqYBc4ZTgx";
     }
   </script>
-  <!-- Facebook Pixels -->
+  <!-- Facebook Pixels com aliases -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -118,17 +118,17 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', '849999207310559');
-    fbq('init', '645751058327823');
+    fbq('init', '849999207310559', {}, 'pixel1');
+    fbq('init', '645751058327823', {}, 'pixel2');
 
     window.onload = function () {
       if (!localStorage.getItem("front")) {
         localStorage.setItem("front", "true");
-        fbq('track', 'Purchase', {
+        fbq('pixel1.track', 'Purchase', {
           value: 20.00,
           currency: 'BRL'
         });
-        fbq('trackCustom', 'Purchase_645751058327823', {
+        fbq('pixel2.track', 'Purchase', {
           value: 20.00,
           currency: 'BRL'
         });
